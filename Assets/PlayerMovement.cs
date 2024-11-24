@@ -29,14 +29,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         //GetInput();
         MoveWithInput();
-=======
-        //animator.SetFloat("Speed", Mathf.Abs(xInput));
-        CheckInput();
-        HandleJump();
->>>>>>> 6657bfbc852ae84cb674db9614e75e3143573b12
         Shoot();
     }
 
@@ -46,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         ApplyFriction();
     }
 
-<<<<<<< HEAD
     // void GetInput() {
     //     xInput = Input.GetAxis("Horizontal");
     //     yInput = Input.GetAxis("Vertical");
@@ -59,21 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
             body.linearVelocity = new Vector2(body.linearVelocity.x, yInput * jumpSpeed);
-=======
-    void CheckInput() {
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
-    }
-
-    void MoveWithInput() {
-        if (Mathf.Abs(xInput) > 0) {
-
-            float increment = xInput * acceleration;
-            float newSpeed = Mathf.Clamp(body.linearVelocity.x + increment, -groundSpeed, groundSpeed);
-            body.linearVelocity = new Vector2(newSpeed, body.linearVelocity.y);
-
-            FaceInput();
->>>>>>> 6657bfbc852ae84cb674db9614e75e3143573b12
         }
     }
 
