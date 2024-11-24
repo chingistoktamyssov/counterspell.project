@@ -12,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
-
-
     public bool grounded;
 
     // Update is called once per frame
@@ -24,7 +22,10 @@ public class PlayerMovement : MonoBehaviour
         // FaceInput();
         Shoot();
         CheckGround();
-
+        if(transform.position.x<deadZone){
+          Debug.Log("Pipe deleted");
+          Destroy(gameObject); 
+        }
     }
 
     void MoveWithInput() {
