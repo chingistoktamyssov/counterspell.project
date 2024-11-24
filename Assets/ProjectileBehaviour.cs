@@ -3,6 +3,7 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     public float Speed = 0.5f;
+    float timer = 0;
 
     private void Update()
     {
@@ -13,7 +14,13 @@ public class ProjectileBehaviour : MonoBehaviour
         }
     }
     private void OnCollisionEnter2D(Collision2D collision) {
-        Destroy(gameObject); 
+        if(timer>0){
+         Destroy(gameObject); 
+        }
+        else{
+            timer++;
+        }
+
     }
 
     // private void OnCollisionEnter2D(Collision2D collision) {
