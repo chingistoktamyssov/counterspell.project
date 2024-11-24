@@ -4,6 +4,7 @@ public class ProjectileBehaviour : MonoBehaviour
 {
     public float Speed = 0.5f;
     float timer = 0;
+    static public int jakeHealth = 3;
 
     private void Update()
     {
@@ -17,6 +18,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if(timer>0){
          Destroy(gameObject); 
          timer=0;
+         jakeHealth--;
         }
         else{
             timer++;

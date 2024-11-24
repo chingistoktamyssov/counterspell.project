@@ -22,6 +22,9 @@ public class jakescript : MonoBehaviour
         MoveWithInput();
         // FaceInput();
         CheckGround();
+        if(ProjectileBehaviour.jakeHealth==0){
+            Destroy(gameObject);
+        }
 
     }
 
