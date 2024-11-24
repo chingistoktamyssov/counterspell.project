@@ -53,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = Vector2.right*groundSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && grounded) {
-            body.linearVelocity = Vector2.up * jumpSpeed;
+        if (Input.GetKeyDown(KeyCode.W)) {
+            body.linearVelocity = Vector2.up*jumpSpeed;
         }
     
     }
