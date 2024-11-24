@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
+        //GetInput();
         MoveWithInput();
         Shoot();
     }
@@ -38,17 +38,17 @@ public class PlayerMovement : MonoBehaviour
         ApplyFriction();
     }
 
-    void GetInput() {
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
-    }
+    // void GetInput() {
+    //     xInput = Input.GetAxis("Horizontal");
+    //     yInput = Input.GetAxis("Vertical");
+    // }
 
     void MoveWithInput() {
-        if (Mathf.Abs(xInput) > 0) {
+        if (Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.D)) {
             body.linearVelocity = new Vector2(xInput * groundSpeed, body.linearVelocity.y);
         }
 
-        if (Mathf.Abs(yInput) > 0 && grounded) {
+        if (Input.GetKeyDown(KeyCode.W) && grounded) {
             body.linearVelocity = new Vector2(body.linearVelocity.x, yInput * jumpSpeed);
         }
         transform.Rotate(0f, 180f, 0f);
