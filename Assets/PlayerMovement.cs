@@ -24,10 +24,6 @@ public class PlayerMovement : MonoBehaviour
         // FaceInput();
         Shoot();
         CheckGround();
-        if(transform.position.x<deadZone){
-          Debug.Log("Pipe deleted");
-          Destroy(gameObject); 
-        }
 
     }
 
@@ -41,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
-
-        if (Input.GetKeyDown(KeyCode.W)) {
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
         float direction = Mathf.Sign(body.linearVelocity.x);
