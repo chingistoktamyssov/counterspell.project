@@ -1,0 +1,4 @@
+repository "hawk.vs.paul.project_1@chingistoktamyssov@cloud"
+  path "/"
+    br "/main"
+    co "/main"
