@@ -69,6 +69,14 @@ public class PlayerMovement : MonoBehaviour
         // transform.Rotate(0f, 180f, 0f);
     }
 
+<<<<<<< HEAD
+=======
+    void ApplyFriction() {
+        // if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
+        //     body.linearVelocity *= groundDecay;
+        // }
+    }
+>>>>>>> 95890fcde32a95d4dbc3c708a8858e1cba02054c
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
