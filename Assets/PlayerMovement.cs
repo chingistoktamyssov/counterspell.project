@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = Vector2.right*groundSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKeyDown(KeyCode.W && ground)) {
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
     
