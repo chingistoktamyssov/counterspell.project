@@ -15,19 +15,20 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
 
+
     public bool grounded;
 
     // Update is called once per frame
     void Update()
     {
         //GetInput();
-        CheckGround();
         MoveWithInput();
         FaceInput();
         Shoot();
+        CheckGround();
         if(transform.position.x<deadZone){
-            Debug.Log("Pipe deleted");
-            Destroy(gameObject); 
+          Debug.Log("Pipe deleted");
+          Destroy(gameObject); 
         }
     }
 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = Vector2.right*groundSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.W && ground)) {
+        if (Input.GetKeyDown(KeyCode.W)) {
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
     
