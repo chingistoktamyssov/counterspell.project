@@ -16,6 +16,7 @@ public class ProjectileBehaviour : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if(timer>0){
          Destroy(gameObject); 
+         timer=0;
         }
         else{
             timer++;
