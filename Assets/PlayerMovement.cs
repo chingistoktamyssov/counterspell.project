@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform LaunchOffset;
     public float groundSpeed;
     public float jumpSpeed;
-    public float deadZone = -20;
 
     [Range(0f, 1f)]
     public float groundDecay;
@@ -23,32 +22,31 @@ public class PlayerMovement : MonoBehaviour
         //GetInput();
         CheckGround();
         MoveWithInput();
-        FaceInput();
+        // FaceInput();
         Shoot();
-        // if(transform.position.x<deadZone){
-        //     Debug.Log("Pipe deleted");
-        //     Destroy(gameObject); 
-        // }
     }
 
     void MoveWithInput() {
         if (Input.GetKeyDown(KeyCode.A)) {
             body.linearVelocity = Vector2.left*groundSpeed;
+
         }
         else if(Input.GetKeyDown(KeyCode.D)){
             body.linearVelocity = Vector2.right*groundSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.W && ground)) {
+        if (Input.GetKeyDown(KeyCode.W) && grounded) {
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
+        float direction = Mathf.Sign(body.linearVelocity.x);
+        transform.localScale = new Vector3(direction, 1, 1);
     
     }
 
-    void FaceInput() {
-        // float direction = Mathf.Sign(xInput);
-        // transform.localScale = new Vector3(direction, 1, 1);
-    }
+    // void FaceInput() {
+    //     // float direction = Mathf.Sign(xInput);
+    //     // transform.localScale = new Vector3(direction, 1, 1);
+    // }
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
