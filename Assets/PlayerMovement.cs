@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         // FaceInput();
         Shoot();
         CheckGround();
-
+    
     }
 
     void MoveWithInput() {
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void Shoot() {
         if (Input.GetKey(KeyCode.E)) {
             if (ShootCooldown == 50) {
-                transform.Rotate(0f, 0f, 0f);
+                
                 Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
             }
         ShootCooldown -= 1;
