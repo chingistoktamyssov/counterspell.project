@@ -24,16 +24,6 @@ public class PlayerMovement : MonoBehaviour
         MoveWithInput();
         FaceInput();
         Shoot();
-<<<<<<< HEAD
-=======
-        if(transform.position.x<deadZone){
-            Destroy(gameObject);
-            Debug.Log("Thingy destroyed");
-        }
-    }
-
-    void FixedUpdate() {
->>>>>>> f5101349900e435b9d30304348d5b225b0f82026
         CheckGround();
     }
 
@@ -62,15 +52,6 @@ public class PlayerMovement : MonoBehaviour
         }
         // transform.Rotate(0f, 180f, 0f);
     }
-
-<<<<<<< HEAD
-=======
-    void ApplyFriction() {
-        // if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
-        //     body.linearVelocity *= groundDecay;
-        // }
-    }
->>>>>>> f5101349900e435b9d30304348d5b225b0f82026
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
