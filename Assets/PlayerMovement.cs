@@ -46,13 +46,17 @@ public class PlayerMovement : MonoBehaviour
     // }
 
     void MoveWithInput() {
-        if (Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.D)) {
-            body.linearVelocity = new Vector2(xInput * groundSpeed, body.linearVelocity.y);
+        if (Input.GetKeyDown(KeyCode.A)) {
+            body.linearVelocity = Vector2.right*groundSpeed;
+        }
+        else if(Input.GetKeyDown(KeyCode.D)){
+            body.linearVelocity = Vector2.left*groundSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, yInput * jumpSpeed);
+            body.linearVelocity = Vector2.up * jumpSpeed;
         }
+    
     }
 
     void FaceInput() {
