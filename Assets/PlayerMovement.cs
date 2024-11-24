@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
+        animator.SetFloat("Speed", body.linearVelocity.x);
         float direction = Mathf.Sign(body.linearVelocity.x);
         transform.localScale = new Vector3(direction, 1, 1);
     
