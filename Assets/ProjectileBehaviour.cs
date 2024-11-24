@@ -8,7 +8,7 @@ public class ProjectileBehaviour : MonoBehaviour
 
     private void Update()
     {
-        transform.position += -transform.right * Time.deltaTime * Speed;
+        transform.position += transform.right * Time.deltaTime * Speed;
         if (transform.position.x<-20 || 20 < transform.position.x){
             Debug.Log("Pipe deleted");
             Destroy(gameObject); 

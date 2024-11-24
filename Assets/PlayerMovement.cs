@@ -22,10 +22,7 @@ public class PlayerMovement : MonoBehaviour
         // FaceInput();
         Shoot();
         CheckGround();
-        if(transform.position.x<deadZone){
-          Debug.Log("Pipe deleted");
-          Destroy(gameObject); 
-        }
+
     }
 
     void MoveWithInput() {
@@ -49,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         float direction = Mathf.Sign(body.linearVelocity.x);
         transform.localScale = new Vector3(direction, 1, 1);
-    
+
     }
 
 
@@ -61,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void Shoot() {
         if (Input.GetKey(KeyCode.E)) {
             if (ShootCooldown == 50) {
+                transform.Rotate(0f, 180f, 0f);
                 Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
             }
         ShootCooldown -= 1;
