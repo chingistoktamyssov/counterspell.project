@@ -25,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
         MoveWithInput();
         FaceInput();
         Shoot();
-        if(transform.position.x<deadZone){
-            Debug.Log("Pipe deleted");
-            Destroy(gameObject); 
-        }
+        // if(transform.position.x<deadZone){
+        //     Debug.Log("Pipe deleted");
+        //     Destroy(gameObject); 
+        // }
     }
 
     void MoveWithInput() {
@@ -48,13 +48,6 @@ public class PlayerMovement : MonoBehaviour
     void FaceInput() {
         // float direction = Mathf.Sign(xInput);
         // transform.localScale = new Vector3(direction, 1, 1);
-    }
-
-    void HandleJump() {
-         if (Input.GetKey(KeyCode.W) && grounded) {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpSpeed);
-        }
-        transform.Rotate(0f, 180f, 0f);
     }
 
     void CheckGround() {
