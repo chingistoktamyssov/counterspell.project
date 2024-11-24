@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour 
-{
-
+{   
+    public Animator animator;
+    public float acceleration;
     public ProjectileBehaviour ProjectilePrefab;
     public Transform LaunchOffset;
     public float groundSpeed;
@@ -28,34 +29,48 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        MoveWithInput();
+        //animator.SetFloat("Speed", Mathf.Abs(xInput));
+        CheckInput();
+        HandleJump();
         Shoot();
     }
 
     void FixedUpdate() {
         CheckGround();
+        MoveWithInput();
         ApplyFriction();
     }
 
-    void GetInput() {
+    void CheckInput() {
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
     }
 
     void MoveWithInput() {
         if (Mathf.Abs(xInput) > 0) {
-            body.linearVelocity = new Vector2(xInput * groundSpeed, body.linearVelocity.y);
-        }
 
-        if (Mathf.Abs(yInput) > 0 && grounded) {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, yInput * jumpSpeed);
+            float increment = xInput * acceleration;
+            float newSpeed = Mathf.Clamp(body.linearVelocity.x + increment, -groundSpeed, groundSpeed);
+            body.linearVelocity = new Vector2(newSpeed, body.linearVelocity.y);
+
+            FaceInput();
         }
-        transform.Rotate(0f, 180f, 0f);
+    }
+
+    void FaceInput() {
+        float direction = Mathf.Sign(xInput);
+        transform.localScale = new Vector3(direction, 1, 1);
+    }
+
+    void HandleJump() {
+         if (Input.GetKey(KeyCode.W) && grounded) {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpSpeed);
+        }
+        // transform.Rotate(0f, 180f, 0f);
     }
 
     void ApplyFriction() {
-        if (grounded && xInput == 0 && yInput == 0) {
+        if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
             body.linearVelocity *= groundDecay;
         }
     }
@@ -64,9 +79,16 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
     }
 
+    private float ShootCooldown = 50;
     void Shoot() {
-        if (Input.GetButtonDown("Fire1")) {
-            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+        if (Input.GetKey(KeyCode.E)) {
+            if (ShootCooldown == 50) {
+                Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+            }
+        ShootCooldown -= 1;
+        if (ShootCooldown <= 0) {
+                ShootCooldown = 50;
+            }
         }
     }
 }
