@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveWithInput() {
         if (Input.GetKeyDown(KeyCode.A)) {
-            body.linearVelocity = Vector2.right*groundSpeed;
+            body.linearVelocity = Vector2.left*groundSpeed;
         }
         else if(Input.GetKeyDown(KeyCode.D)){
-            body.linearVelocity = Vector2.left*groundSpeed;
+            body.linearVelocity = Vector2.right*groundSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
