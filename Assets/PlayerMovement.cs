@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour 
 {
+
+    public ProjectileBehaviour ProjectilePrefab;
+    public Transform LaunchOffset;
     public float groundSpeed;
     public float jumpSpeed;
 
@@ -27,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GetInput();
         MoveWithInput();
+        Shoot();
     }
 
     void FixedUpdate() {
@@ -47,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(yInput) > 0 && grounded) {
             body.linearVelocity = new Vector2(body.linearVelocity.x, yInput * jumpSpeed);
         }
+        transform.Rotate(0f, 180f, 0f);
     }
 
     void ApplyFriction() {
@@ -57,5 +62,11 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
+    }
+
+    void Shoot() {
+        if (Input.GetButtonDown("Fire1")) {
+            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+        }
     }
 }
