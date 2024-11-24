@@ -72,9 +72,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void ApplyFriction() {
-        if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
-            body.linearVelocity *= groundDecay;
-        }
+        // if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
+        //     body.linearVelocity *= groundDecay;
+        // }
     }
 
     void CheckGround() {
