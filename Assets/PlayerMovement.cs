@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGround();
          if(transform.position.x<deadZone){
             Debug.Log("Pipe deleted");
-            Destroy(gameObject);
+            Destroy(gameObject); 
         }
     }
 
