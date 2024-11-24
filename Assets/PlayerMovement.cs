@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         FaceInput();
         Shoot();
         CheckGround();
-         if(transform.position.x<deadZone){
+        if(transform.position.x<deadZone){
             Debug.Log("Pipe deleted");
             Destroy(gameObject); 
         }
