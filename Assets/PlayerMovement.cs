@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour 
 {   
     public Animator animator;
-    public float acceleration;
     public ProjectileBehaviour ProjectilePrefab;
     public Transform LaunchOffset;
     public float groundSpeed;
@@ -37,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
         CheckGround();
         MoveWithInput();
-        ApplyFriction();
     }
 
     // void GetInput() {
@@ -71,11 +69,6 @@ public class PlayerMovement : MonoBehaviour
         // transform.Rotate(0f, 180f, 0f);
     }
 
-    void ApplyFriction() {
-        if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
-            body.linearVelocity *= groundDecay;
-        }
-    }
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
