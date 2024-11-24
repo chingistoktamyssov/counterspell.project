@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform LaunchOffset;
     public float groundSpeed;
     public float jumpSpeed;
-
     [Range(0f, 1f)]
     public float groundDecay;
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
+
 
     public bool grounded;
 
@@ -20,10 +20,21 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //GetInput();
-        CheckGround();
         MoveWithInput();
         // FaceInput();
         Shoot();
+        CheckGround();
+        if(transform.position.x<deadZone){
+          Debug.Log("Pipe deleted");
+          Destroy(gameObject); 
+        }
+=======
+        // if(transform.position.x<deadZone){
+        //     Debug.Log("Pipe deleted");
+        //     Destroy(gameObject); 
+        // }
+>>>>>>> 9d4f35d30da3dbd14c97157b373c245298829fa7
+>>>>>>> 5167fdcf239b8357d9f3fd1041e0c42477a05673
     }
 
     void MoveWithInput() {
@@ -35,7 +46,11 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = Vector2.right*groundSpeed;
         }
 
+<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.W) && grounded) {
+=======
+        if (Input.GetKeyDown(KeyCode.W)) {
+>>>>>>> 5167fdcf239b8357d9f3fd1041e0c42477a05673
             body.linearVelocity = Vector2.up*jumpSpeed;
         }
         float direction = Mathf.Sign(body.linearVelocity.x);
