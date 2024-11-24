@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform LaunchOffset;
     public float groundSpeed;
     public float jumpSpeed;
+    public float deadZone = -20;
 
     [Range(0f, 1f)]
     public float groundDecay;
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
         //GetInput();
         MoveWithInput();
         Shoot();
+        if(transform.position.x<deadZone){
+            Destroy(gameObject);
+            Debug.Log("Thingy destroyed");
+        }
     }
 
     void FixedUpdate() {
@@ -69,14 +74,11 @@ public class PlayerMovement : MonoBehaviour
         // transform.Rotate(0f, 180f, 0f);
     }
 
-<<<<<<< HEAD
-=======
     void ApplyFriction() {
         // if (grounded && xInput == 0 && body.linearVelocity.y <= 0) {
         //     body.linearVelocity *= groundDecay;
         // }
     }
->>>>>>> 95890fcde32a95d4dbc3c708a8858e1cba02054c
 
     void CheckGround() {
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
